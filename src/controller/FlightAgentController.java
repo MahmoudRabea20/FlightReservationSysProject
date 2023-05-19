@@ -71,7 +71,7 @@ public class FlightAgentController {
             JOptionPane.showMessageDialog(view, "The base price entered is invalid!", "Invalid Input", JOptionPane.ERROR_MESSAGE);
         } else {
             Flight flight = new Flight(view.getDepartureAirport(), view.getArrivalAirport(), view.getFlightDate(), view.getDepartureTime(), view.getFlightDuration(), view.getBasePrice(), view.getAirline(), view.getSeatCapacity(), view.getSeatCapacity());
-            flightRepo.create(flight);
+            flightRepo.update(flight);
             DefaultTableModel model = view.getFlightTableModel();
             updateFlightsTableModel(model);
 
@@ -85,9 +85,9 @@ public class FlightAgentController {
         } else {
             Flight flight = new Flight(view.getFlightId());
             flightRepo.delete(flight);
+            DefaultTableModel model = view.getFlightTableModel();
+            updateFlightsTableModel(model);
         }
-        DefaultTableModel model = view.getFlightTableModel();
-        updateFlightsTableModel(model);
     }
 
     public void updateFlightsTableModel(DefaultTableModel model) {
